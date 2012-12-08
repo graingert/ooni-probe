@@ -112,10 +112,10 @@ def getTestDetails(options):
     from ooni import __version__ as software_version
 
     client_geodata = {}
-    if config.privacy.includeip or \
+    if config.probe_ip and (config.privacy.includeip or \
             config.privacy.includeasn or \
             config.privacy.includecountry or \
-            config.privacy.includecity:
+            config.privacy.includecity):
         log.msg("We will include some geo data in the report")
         client_geodata = geodata.IPToLocation(config.probe_ip)
 

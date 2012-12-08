@@ -32,7 +32,7 @@ config_file = None
 sample_config_file = None
 
 # This is used to store the probes IP address obtained via Tor
-probe_ip = '127.0.0.1'
+probe_ip = None
 
 def get_root_path():
     this_directory = os.path.dirname(__file__)

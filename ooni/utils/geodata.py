@@ -23,22 +23,14 @@ def IPToLocation(ipaddr):
     location = {'city': None, 'countrycode': None, 'asn': None}
     try:
         city_dat = pygeoip.GeoIP(city_file)
-        try:
-            location['city'] = city_dat.record_by_addr(ipaddr)['city']
-        except TypeError:
-            location['city'] = None
+        location['city'] = city_dat.record_by_addr(ipaddr)['city']
 
         country_dat = pygeoip.GeoIP(country_file)
-        try:
-            location['countrycode'] = country_dat.country_code_by_addr(ipaddr)
-        except TypeError:
-            location['countrycode'] = 'XX'
+        location['countrycode'] = country_dat.country_code_by_addr(ipaddr)
 
         asn_dat = pygeoip.GeoIP(asn_file)
-        try:
-            location['asn'] = asn_dat.org_by_addr(ipaddr)
-        except TypeError:
-            location['asn'] = 'AS0'
+        location['asn'] = asn_dat.org_by_addr(ipaddr)
+
     except IOError:
         log.err("Could not find GeoIP data files. Go into data/ "
                 "and run make geoip")
