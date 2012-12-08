@@ -32,13 +32,13 @@ def IPToLocation(ipaddr):
         try:
             location['countrycode'] = country_dat.country_code_by_addr(ipaddr)
         except TypeError:
-            location['countrycode'] = None
+            location['countrycode'] = 'XX'
 
         asn_dat = pygeoip.GeoIP(asn_file)
         try:
             location['asn'] = asn_dat.org_by_addr(ipaddr)
         except TypeError:
-            location['asn'] = None
+            location['asn'] = 'AS0'
     except IOError:
         log.err("Could not find GeoIP data files. Go into data/ "
                 "and run make geoip")
