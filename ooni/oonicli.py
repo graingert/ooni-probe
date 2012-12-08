@@ -110,6 +110,7 @@ def runTestList(none, test_list):
     return d2
 
 def errorRunningTests(failure):
+    log.err("There was an error in running a test")
     failure.printTraceback()
 
 def run():
