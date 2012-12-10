@@ -17,11 +17,14 @@ class NetworkLatencyTest(scapyt.BaseScapyTest):
     name = "Network Latency test"
     version = "0.0.1"
 
+    usageOptions = UsageOptions
+
     inputFile = ['f', 'file', None,
             'A file containing IP port pairs to compute latency towards (separated by :)']
 
     def setUp(self):
         self.dstIP, self.dstPort = self.input.split(':')
+        self.dstPort = int(self.dstPort)
 
     def test_tcp_syn(self):
         packet = IP(dst=self.dstIP)/TCP(dport=self.dstPort, flags='S')
